@@ -1,0 +1,37 @@
+import React from 'react';
+
+class NoteSearch extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // NoteSearch menyimpan searchKeyword di state sendiri
+    this.state = {
+      keyword: '',
+    };
+
+    this.onKeywordChangeHandler = this.onKeywordChangeHandler.bind(this);
+  }
+
+  onKeywordChangeHandler(event) {
+    const keyword = event.target.value;
+    this.setState({ keyword });
+    this.props.onSearch(keyword);
+  }
+
+  render() {
+    return (
+      <div className="note-search" data-testid="note-search">
+        <input
+          className="note-search__input"
+          type="text"
+          placeholder="Cari catatan..."
+          value={this.state.keyword}
+          onChange={this.onKeywordChangeHandler}
+          data-testid="note-search-input"
+        />
+      </div>
+    );
+  }
+}
+
+export default NoteSearch;
